@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Axios from 'axios'
 
 const Contact = ()=>{
 
@@ -21,20 +20,9 @@ const Contact = ()=>{
         })
     }
 
-    const send = ()=>{
-        Axios.post(`http://localhost:3001/userdata`, {
-                username : data.username, 
-                phone : data.phone,
-                email : data.email        
-        }).then(()=>{
-            console.log('inserted')
-         }).catch((e)=>{console.log(e)}
-         )
-         
-        setData({
-            username:" ",
-            phone:' ',
-            email:" "})
+    const formSubmit = (e)=>{
+        // e.preventDefault();
+        alert(`Welcome ${data.username}`)
     }
 
     return(
@@ -45,7 +33,7 @@ const Contact = ()=>{
             <div className="container contact_div">
             <div className="row">
                 <div className='col-lg-6 col-md-6 col-12 mx-auto'>
-                    <form onSubmit={(e)=>{e.preventDefault()}} className="form_div">
+                    <form onSubmit={formSubmit} className="form_div">
                         <div className="form-group">
                             <label>Username</label>
                             <input className="form-control" 
@@ -77,7 +65,7 @@ const Contact = ()=>{
                             />
                         </div><br/>
                         <div className="form-group">
-                        <button onClick={send} className="btn btn-primary" >
+                        <button className="btn btn-primary" >
                             Submit
                         </button>
                         </div>
